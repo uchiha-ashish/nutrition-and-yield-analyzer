@@ -1,0 +1,19 @@
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot as plt
+data = pd.read_csv('C:\Ashish/wheat.csv')
+prod = data['Yield']
+data.drop(['Yield', 'CountyName', 'State', 'Latitude', 'Longitude', 'Date'], axis = 1, inplace = True)
+
+
+for t in data.columns:
+    plt.scatter(data[t].head(1000), prod.head(1000))        #This is for first 1000 entries, for other entries .iloc can be used
+    plt.xlabel(t)
+    plt.ylabel('Yield')
+    plt.show()
+
+
+for n in data.columns:
+    plt.hist(data[n].head(1000))
+    plt.xlabel(n)
+    plt.show()

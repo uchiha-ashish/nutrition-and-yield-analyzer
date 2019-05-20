@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jun 29 13:13:29 2018
+
+@author: Ashish Sonavane
+"""
+
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot as plt
+data = pd.read_csv('C:\Ashish/wheat.csv')
+data.drop(['CountyName', 'State', 'Latitude', 'Longitude', 'Date'], axis = 1, inplace = True)
+data.columns.shape
+data.dropna(axis = 0, inplace = True)
+x = data.iloc[:, :20]
+y = data.iloc[:, 20]
+y = y.astype('int')
+from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.cross_validation import cross_val_score
+from sklearn.ensemble import RandomForestRegressor
+for p in range(10, 20):
+    x_new = SelectKBest(chi2, k = p).fit_transform(np.absolute(x), y)
+    print(p)
+    n_range = range(15, 25)
+    n_scores = []
+    for t in n_range:
+        forest = RandomForestRegressor(n_estimators=t)
+        forest.fit(x_new, y)
+        scores2 = forest.score(x_new, y)
+        n_scores.append(scores2.mean())
+    print(n_scores)    
+    plt.plot(n_range, n_scores)
+    plt.xlabel('values of n')
+    plt.ylabel('accuracy scores')
+ 
+    
+####### The result is, when all features are used and n_estimateors are 23, the model fit score is 0.964

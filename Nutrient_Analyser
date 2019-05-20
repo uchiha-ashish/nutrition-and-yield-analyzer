@@ -1,0 +1,82 @@
+"""
++Created on Sun May 27 13:17:23 2018
++
++@author: Ashish Sonavane
++"""
++import pandas as pd
++import numpy as np
++from matplotlib import pyplot as plt
++crops = pd.read_csv('cropsdata.csv')
++crops.drop(['Ph', 'Water Holding Capacity', 'Bulk Density',
++       'Recommended Commercial-Hybrid \nVarieties', 'Temperature \nrange\n(C)',
++       'Rainfall\nRequirement\ncm', 'Seed rate\nkg/ha', 'Diseases treatment',
++       'Unnamed: 22', 'Fertilizer Name', 'Amount (kg)', 'Cost (Rs)',
++       'Nitrigen', 'Phosphorous', 'Potassium', 'Sulphur', '.Reference'], axis=1, inplace=True)
++print(crops)
++crops.set_index('Crops', inplace = True)
++crops.fillna(value = 0, inplace= True)
++crop = input("Enter the required crop")
++req_N = crops.ix[crop, 1]
++req_P = crops.ix[crop, 2]
++req_K = crops.ix[crop, 3]
++req_Ca = crops.ix[crop, 4]
++req_Mg = crops.ix[crop, 5]
++req_S = crops.ix[crop, 6]
++req_Fe = crops.ix[crop, 7]
++req_Mn = crops.ix[crop, 8]
++req_Cu = crops.ix[crop, 9]
++req_Zn = crops.ix[crop, 10]
++req_B = crops.ix[crop, 11]
++req_Mo = crops.ix[crop, 12]
++print("Enter the availiable nutrients")
++ava_N = input("availiable N")
++ava_P = input("availiable P")
++ava_K = input("availiable K")
++ava_Ca = input("availiable Ca")
++ava_Mg = input("availiable Mg")
++ava_S = input("avaliable S")
++ava_Fe = input("availiable Fe")
++ava_Mn = input("availiable Mn")
++ava_Cu = input("availiable Cu")
++ava_Zn = input("availiable Zn")
++ava_B = input("availiable B")
++ava_Mo = input("availiable Mo")
++n =(float)(req_N)-(float)(ava_N)
++p = (float)(req_N)-(float)(ava_P)
++k = ((float)(req_K)-(float)(ava_K))
++ca = (float)(req_Ca) - (float)(ava_Ca)
++mg = ((float)(req_Mg) - (float)(ava_Mg))
++zn = ((float)(req_Zn) - (float)(ava_Zn))
++s = (float)(req_S) - (float)(ava_S)
++mn = (float)(req_Mn) - (float)(ava_Mn)
++fe = (float)(req_Fe) - (float)(ava_Fe)
++cu = (float)(req_Cu) - (float)(ava_Cu)
++s = (float)(req_S) - (float)(ava_S)
++b = (float)(req_B) - (float)(ava_B)
++mo = ((float)(req_Mo) - (float)(ava_Mo))
++if n != -(float)(ava_N):
++    print("extra N is %f" %n)
++if mo != -(float)(ava_Mo):
++    print("extra Mo is %f" %mo)
++if zn != -(float)(ava_Zn):
++    print("extra Zn is %f" %zn)
++if s != -(float)(ava_S):
++    print("extra S is %f" %s)
++if n != -(float)(ava_N):
++    print("extra Mg is %f" %mg)
++if ca != -(float)(ava_Ca):
++    print("extra Ca is %f" %ca)
++if k != -(float)(ava_K):
++    print("extra K is %f" %k)
++if p != -(float)(ava_P):
++    print("extra P is %f" %p)
++if b != -(float)(ava_B):
++    print("extra B is %f" %b)   
++if fe != -(float)(ava_Fe):
++    print("extra Fe is %f" %fe)
++if mn != -(float)(ava_Mn):
++    print("extra Mn is %f" %mn)
++if cu != -(float)(ava_Cu):
++    print("extra Cu is %f" %cu)
++
++done = input("Done ? (y/n) ")
