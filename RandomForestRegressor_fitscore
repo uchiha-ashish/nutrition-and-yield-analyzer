@@ -34,4 +34,4 @@ for p in range(10, 20):
     plt.ylabel('accuracy scores')
  
     
-####### The result is, when all features are used and n_estimateors are 23, the model fit score is 0.964
+####### The result is, when all features are used and n_estimateors are 23, the model fit score is 0.92
